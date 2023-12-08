@@ -1,3 +1,4 @@
+alembic==1.13.0
 annotated-types==0.6.0
 anyio==3.7.1
 black==22.1.0
@@ -10,12 +11,15 @@ dnspython==2.4.2
 email-validator==2.1.0.post1
 fastapi==0.104.1
 flake8==4.0.1
+greenlet==3.0.1
 h11==0.14.0
 httpcore==1.0.2
 httpx==0.25.2
 idna==3.6
 iniconfig==2.0.0
 isort==5.12.0
+Mako==1.3.0
+MarkupSafe==2.1.3
 mccabe==0.6.1
 mslex==1.1.0
 mypy-extensions==1.0.0
@@ -26,12 +30,15 @@ pluggy==1.3.0
 psutil==5.9.6
 pycodestyle==2.8.0
 pydantic==2.5.2
+pydantic-settings==2.1.0
 pydantic_core==2.14.5
 pyflakes==2.4.0
 pytest==7.4.3
 pytest-cov==4.1.0
+python-dotenv==1.0.0
 ruff==0.1.7
 sniffio==1.3.0
+SQLAlchemy==2.0.23
 starlette==0.27.0
 taskipy==1.12.2
 tomli==2.0.1
