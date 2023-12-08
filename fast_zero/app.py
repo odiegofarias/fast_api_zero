@@ -14,16 +14,15 @@ def read_root():
     return {'message': 'Olá, Mundo'}
 
 
-@app.post('/users/', status_code=201, response_model=UserPublic)
+@app.post('/create_user/', status_code=201, response_model=UserPublic)
 def create_user(user: UserSchema, session: Session = Depends(get_session)):
-    db_user = session.scalar(
-        select(User).where(User.username == user.username)
+    db_user_email = session.scalar(
+        select(User).where(User.email == user.email)
     )
 
-    if db_user:
-        raise HTTPException(
-            status_code=400, detail='Username already registered'
-        )
+    if db_user_email:
+        raise HTTPException(status_code=400, detail='Email already registered')
+
     db_user = User(
         username=user.username, password=user.password, email=user.email
     )
@@ -50,7 +49,7 @@ def update_user(
 ):
     db_user = session.scalar(select(User).where(User.id == user_id))
     if db_user is None:
-        raise HTTPException(status_code=404, detail='User not found.')
+        raise HTTPException(status_code=400, detail='User not found.')
 
     db_user.username = user.username
     db_user.password = user.password
@@ -67,7 +66,7 @@ def delete_user(user_id: int, session: Session = Depends(get_session)):
     db_user = session.scalar(select(User).where(User.id == user_id))
 
     if db_user is None:
-        raise HTTPException(status_code=404, detail='User not found.')
+        raise HTTPException(status_code=400, detail='User not found.')
 
     session.delete(db_user)
     session.commit()
